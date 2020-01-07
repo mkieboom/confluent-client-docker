@@ -33,3 +33,6 @@ enabled=1" > /etc/yum.repos.d/confluent.repo
 
 # Install minimum (clients only)
 RUN yum install -y confluent-kafka-2.12
+
+# Keep container alive (shouldn't do it like this in production)
+ENTRYPOINT ["tail", "-f", "/dev/null"]
