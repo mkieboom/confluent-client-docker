@@ -11,7 +11,7 @@ MAINTAINER mkieboom
 
 # Install basic stuff
 RUN yum install -y epel-release && \
-    yum install -y wget telnet jq curl which
+    yum install -y wget telnet jq curl which nc
 
 # Install Confluent package key
 RUN rpm --import https://packages.confluent.io/rpm/5.3/archive.key
@@ -34,5 +34,5 @@ enabled=1" > /etc/yum.repos.d/confluent.repo
 # Install minimum (clients only)
 RUN yum install -y confluent-kafka-2.12
 
-# Keep container alive (shouldn't do it like this in production)
-ENTRYPOINT ["tail", "-f", "/dev/null"]
+# Keep the container alive
+CMD /bin/bash
